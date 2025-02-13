@@ -28,6 +28,9 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<sonar.organization>ahincho</sonar.organization>
+		<sonar.projectKey>ahincho-ecommerce</sonar.projectKey>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
