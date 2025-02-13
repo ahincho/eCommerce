@@ -16,9 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderCreateRequest {
-    @NotBlank
-    @Size(min = 1, max = 64)
+    @NotBlank(message = "The 'supplier' field cannot be blank")
+    @Size(min = 1, max = 64, message = "The 'supplier' field must have a length between 1 and 64 characters")
     private String supplier;
-    @Size(min = 1) @Valid
-    private List<@NotBlank @Size(min = 1, max = 64) String> products;
+    @Valid
+    @Size(min = 1, message = "The 'products' list must contain at least one product")
+    private List<ProductDto> products;
 }

@@ -1,5 +1,6 @@
 package com.brecom.ecommerce.inventories.orders.infrastructure.adapters.in.rest.controllers;
 
+import com.brecom.ecommerce.commons.infrastructure.adapters.in.rest.validations.ObjectValidator;
 import com.brecom.ecommerce.inventories.orders.application.ports.in.CreateOneOrderUseCase;
 import com.brecom.ecommerce.inventories.orders.infrastructure.adapters.in.rest.dtos.OrderCreateRequest;
 import com.brecom.ecommerce.inventories.orders.infrastructure.adapters.in.rest.dtos.OrderResponse;
@@ -18,11 +19,17 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/v1/orders")
 public class CreateOneOrderRestController {
     private final CreateOneOrderUseCase createOneOrderUseCase;
-    public CreateOneOrderRestController(CreateOneOrderUseCase createOneOrderUseCase) {
+    private final ObjectValidator objectValidator;
+    public CreateOneOrderRestController(
+            CreateOneOrderUseCase createOneOrderUseCase,
+            ObjectValidator objectValidator
+    ) {
         this.createOneOrderUseCase = createOneOrderUseCase;
+        this.objectValidator = objectValidator;
     }
     @PostMapping
-    public Mono<OrderResponse> createOneOrder(@RequestBody @Valid OrderCreateRequest orderCreateRequest) {
+    public Mono<OrderResponse> createOneOrder(@RequestBody OrderCreateRequest orderCreateRequest) {
+        this.objectValidator.validate(orderCreateRequest);
         return this.createOneOrderUseCase
                 .execute(OrderRestMapper.createRequestToDomain(orderCreateRequest))
                 .map(OrderRestMapper::domainToResponse);

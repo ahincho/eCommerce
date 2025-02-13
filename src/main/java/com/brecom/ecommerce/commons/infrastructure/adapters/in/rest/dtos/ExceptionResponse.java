@@ -1,4 +1,4 @@
-package com.brecom.ecommerce.commons.infrastructure.adapters.in.rest;
+package com.brecom.ecommerce.commons.infrastructure.adapters.in.rest.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

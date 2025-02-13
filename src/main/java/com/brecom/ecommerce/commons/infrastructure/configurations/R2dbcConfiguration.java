@@ -1,4 +1,4 @@
-package com.brecom.ecommerce.inventories.orders.infrastructure.configurations.r2dbc;
+package com.brecom.ecommerce.commons.infrastructure.configurations;
 
 import com.brecom.ecommerce.inventories.orders.infrastructure.adapters.out.persistence.r2bdc.OrderStatusReadConverter;
 import com.brecom.ecommerce.inventories.orders.infrastructure.adapters.out.persistence.r2bdc.OrderStatusWriteConverter;

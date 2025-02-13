@@ -1,5 +1,6 @@
 package com.brecom.ecommerce.inventories.orders.infrastructure.adapters.in.rest.dtos;
 
+import com.brecom.ecommerce.inventories.orders.domain.models.OrderStatus;
 import com.brecom.ecommerce.inventories.orders.infrastructure.adapters.in.rest.annotations.ValidOrderStatus;
 
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -18,12 +20,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderUpdateRequest {
-    @NotBlank
-    @Size(min = 1, max = 64)
+    @NotBlank(message = "The 'supplier' field cannot be blank")
+    @Size(min = 1, max = 64, message = "The 'supplier' field must have a length between 1 and 64 characters")
     private String supplier;
-    @Size(min = 1) @Valid
-    private List<@NotBlank @Size(min = 1, max = 64) String> products;
-    @NotBlank
+    @Valid
+    @Size(min = 1, message = "The 'products' list must contain at least one product")
+    private List<ProductDto> products;
     @ValidOrderStatus
     private String status;
 }
