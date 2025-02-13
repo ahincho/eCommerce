@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderConfirmedEvent {
+    // Domain Event to Decrease Product Stock
     private String id;
 }
