@@ -72,3 +72,9 @@ Ejecución de la aplicación usando Docker
 docker-compose up --build
 ```
 
+### Pipelines
+
+Integración con Sonar y Sonar Cloud
+
+https://sonarcloud.io/project/overview?id=ahincho-ecommerce
+
