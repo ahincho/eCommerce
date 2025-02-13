@@ -9,6 +9,7 @@ public interface OrderPersistencePort {
     Mono<Order> createOneOrder(Order order);
     Flux<Order> findOrders();
     Mono<Order> findOneOrderById(Integer id);
+    Mono<Boolean> existsOneOrderById(Integer id);
     Mono<Void> updateOneOrderById(Integer id, Order order);
     Mono<Void> deleteOneOrderById(Integer id);
 }

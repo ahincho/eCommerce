@@ -35,6 +35,10 @@ public class OrderR2dbcPersistenceAdapter implements OrderPersistencePort {
                 .map(OrderR2dbcMapper::entityToDomain);
     }
     @Override
+    public Mono<Boolean> existsOneOrderById(Integer id) {
+        return this.orderR2dbcRepository.existsById(id);
+    }
+    @Override
     @Transactional
     public Mono<Void> updateOneOrderById(Integer id, Order order) {
         OrderEntity orderEntity = OrderR2dbcMapper.domainToEntity(order);

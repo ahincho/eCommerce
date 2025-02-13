@@ -19,8 +19,13 @@ public class UpdateOneOrderByIdService implements UpdateOneOrderByIdUseCase {
     }
     @Override
     public Mono<Void> execute(Integer id, Order order) {
-        return this.orderPersistencePort.findOneOrderById(id)
-                .switchIfEmpty(Mono.error(new OrderNotFoundException("Order with id '" + id + "' not found")))
+        return this.orderPersistencePort.existsOneOrderById(id)
+                .flatMap(exists -> {
+                   if (Boolean.FALSE.equals(exists)) {
+                       return Mono.error(new OrderNotFoundException("Order with id '" + id + "' not found"));
+                   }
+                   return this.orderPersistencePort.findOneOrderById(id);
+                })
                 .flatMap(existingOrder -> {
                     existingOrder.setSupplier(order.getSupplier());
                     existingOrder.setProducts(order.getProducts());

@@ -14,7 +14,7 @@ public enum OrderStatus {
         try {
             return valueOf(status.toUpperCase());
         } catch (IllegalArgumentException | NullPointerException exception) {
-            throw new OrderStatusNotFoundException("Invalid order status: " + status);
+            throw new OrderStatusNotFoundException("Order status with name '" + status + "' not found");
         }
     }
 }
